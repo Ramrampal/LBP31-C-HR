@@ -1,0 +1,58 @@
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+// Function to get the minimum of three values
+int min(int a, int b, int c) {
+    if (a < b) {
+        return (a < c) ? a : c;
+    } else {
+        return (b < c) ? b : c;
+    }
+}
+
+// Function to get the maximum of three values
+int max(int a, int b, int c) {
+    if (a > b) {
+        return (a > c) ? a : c;
+    } else {
+        return (b > c) ? b : c;
+    }
+}
+
+int main() {
+    int num1, num2, num3;
+    
+    // Read the three input numbers
+    scanf("%d %d %d", &num1, &num2, &num3);
+    
+    // Extract digits from each number
+    int h1 = num1 / 100;     // Hundreds place of num1
+    int t1 = (num1 / 10) % 10; // Tens place of num1
+    int u1 = num1 % 10;     // Units place of num1
+    
+    int h2 = num2 / 100;     // Hundreds place of num2
+    int t2 = (num2 / 10) % 10; // Tens place of num2
+    int u2 = num2 % 10;     // Units place of num2
+    
+    int h3 = num3 / 100;     // Hundreds place of num3
+    int t3 = (num3 / 10) % 10; // Tens place of num3
+    int u3 = num3 % 10;     // Units place of num3
+    
+    // Calculate the maximum digit for the thousands place
+    int maxDigit = max(max(h1, t1, u1), max(h2, t2, u2), max(h3, t3, u3));
+    
+    // Calculate the minimum digits for hundreds, tens, and units places
+    int minHundreds = min(h1, h2, h3);
+    int minTens = min(t1, t2, t3);
+    int minUnits = min(u1, u2, u3);
+    
+    // Output the PIN
+    printf("%d%d%d%d\n", maxDigit, minHundreds, minTens, minUnits);
+
+    return 0;
+}
